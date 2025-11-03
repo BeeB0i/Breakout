@@ -81,6 +81,22 @@ void GameManager::update(float dt)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) _paddle->moveRight(dt);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) _paddle->moveLeft(dt);
 
+    // move paddle with mouse input
+    sf::Vector2i mousePos = sf::Mouse::getPosition(*_window);
+    float newPos = static_cast<float>(mousePos.x) - _paddle->getWidth() / 2;
+
+    // stop the paddle from leaving the screen
+    if (newPos < 0)
+    {
+        newPos = 0;
+    }
+    if (newPos + _paddle->getWidth() > _window->getSize().x)
+    {
+        newPos = _window->getSize().x - _paddle->getWidth();
+    }
+
+    _paddle->setPosition(newPos, _paddle->getY());
+
     // update everything 
     _paddle->update(dt);
     _ball->update(dt);
