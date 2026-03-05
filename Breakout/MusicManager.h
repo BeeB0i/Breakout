@@ -7,9 +7,7 @@ class MusicManager
 	MusicManager();
 	void playBackgroundMusic();
 	void playIntenseMusic();
-	void stopBackgroundMusic();
-	void stopIntenseMusic();
-	bool isIntenseMusicPlaying() const;
+	void updateMusicIntensity(float musicIntensity);
 
 	void update(float dt);
 
@@ -17,11 +15,9 @@ private:
 
 	sf::Music backgroundMusic;
 	sf::Music intenseMusic;
-	bool _intenseMusicPlaying = false;
+	float _MusicIntensity;
 
-	// For fade-out (optional)
-	bool _fadingOut = false;
-	float _fadeDuration = 1.0f;
-	float _fadeElapsed = 0.0f;
+	float baseVolume = 40.0f;  // Base volume for background music
+	float currentVolume;
 };
 

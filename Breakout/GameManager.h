@@ -41,6 +41,7 @@ private:
     std::pair<POWERUPS, float> _powerupInEffect;
 	int _bricksRemaining;
 	bool _intenseMusicPlaying = false;
+    float _musicIntensity;
 
     sf::Font _font;
     sf::Text _masterText;
@@ -52,6 +53,7 @@ private:
     PowerupManager* _powerupManager;
     MessagingSystem* _messagingSystem;
     UI* _ui;
+	MusicManager* _musicmanager;
 
     static constexpr float PAUSE_TIME_BUFFER = 0.5f;
     static constexpr float POWERUP_FREQUENCY = 7.5f;    // time between minimum powerup spawn

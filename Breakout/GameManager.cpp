@@ -24,11 +24,11 @@ void GameManager::initialize()
     _powerupManager = new PowerupManager(_window, _paddle, _ball);
     _ui = new UI(_window, _lives, this);
 
-	if (!backgroundMusic.openFromFile("audio/background_music.ogg"))
+	if (!backgroundMusic.openFromFile("audio/background_music.wav"))
 	{
 		std::cerr << "Failed to load background music!" << std::endl;
 	}
-	if (!IntenseMusic.openFromFile("audio/intense_music.ogg"))
+	if (!IntenseMusic.openFromFile("audio/intense_music.wav"))
 	{
 		std::cerr << "Failed to load intense music!" << std::endl;
 	}
@@ -51,11 +51,9 @@ void GameManager::update(float dt)
     _powerupInEffect.second -= dt;
     _bricksRemaining = _brickManager->getBrickCount();
     
-	if (_bricksRemaining <= (_brickManager->totalBricks / 2) && !_intenseMusicPlaying)
+	if (_bricksRemaining <= (_brickManager->totalBricks / 2))
 	{
-        backgroundMusic.stop();
-        IntenseMusic.play();
-        _intenseMusicPlaying = true;
+		_musicmanager->updateMusicIntensity(0.5f);  // Example: Increase intensity when half the bricks are destroyed
 	}
 
     if (_lives <= 0)
